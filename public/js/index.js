@@ -10,7 +10,7 @@ const render = (root)=>{
         section.append(RegisterNumber(_=>render(root)));
     }else if(state.nextPage == 2){
         console.log("aki pag 2");
-        //section.append(RegisterNumber(_=>(root)));
+        section.append(ResendCode(_=>render(root)));
     }else{
         console.log("aki pag ??");
     }
