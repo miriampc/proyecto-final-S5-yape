@@ -1,10 +1,7 @@
 "use strict";
 const RegisterNumber = (update)=> {
-    console.log(state.nextPage);
+    const data = resources.phoneRegister;
     const containerRegister = $('<section class="container"></section>');
-    const divInstructions = $(`<div class="instrucctions"><img src="img/icons/phone.png" alt=""></div>`);
-    const title = $(`<h3>Para comenzar validemos tu número</h3>`);
-    const description = $(`<p>Recibiras un SMS con un código de validación</p>`);
     const formVerfication = $('<form class="verification"></form>');
     const input = $(`<input id="text" type="number" pattern="^[0-9]{9}" placeholder="Ingresa tu número de celular" required>`);
     const checkbox = $(`<input id="terms" type="checkbox">`);
@@ -12,19 +9,15 @@ const RegisterNumber = (update)=> {
     const button = $('<button type="submit" class="disabled" disabled>Continuar</button>');
 
 
-    divInstructions.append(title);
-    divInstructions.append(description);
-    containerRegister.append(divInstructions);
     formVerfication.append(input);
     formVerfication.append(checkbox);
     formVerfication.append(button);
-
-    containerRegister.append(divInstructions);
+    containerRegister.append(Instructions(data.image,data.title,data.description));
     containerRegister.append(formVerfication);
 
     checkbox.on('change', (e)=>{
         e.preventDefault();
-        if(input.val() !="" && checkbox[0].checked) {
+        if(input.val().length == 9 && checkbox[0].checked) {
             button.removeAttr('disabled');
             console.log(checkbox[0].checked);
         }else {
