@@ -6,7 +6,6 @@ const ResendCode = (update)=> {
     const checkbox = $(`<input id="terms" type="checkbox">`);
     const reboot = $('<p>Reintentar en 21</p>');
 
-
     formVerfication.append(input);
     formVerfication.append(reboot);
     containerCode.append(Instructions(data.image,data.title,data.description));
