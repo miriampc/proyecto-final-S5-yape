@@ -11,6 +11,7 @@ const RegisterNumber = (update)=> {
 
     formVerfication.append(input);
     formVerfication.append(checkbox);
+    formVerfication.append(label);
     formVerfication.append(button);
     containerRegister.append(Instructions(data.image,data.title,data.description));
     containerRegister.append(formVerfication);
