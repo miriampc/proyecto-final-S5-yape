@@ -6,6 +6,10 @@
 body,h1,h2,h3,h4,h5,h6,span,label,small{
     font-family: 'Roboto',sans-serif;
     line-height: 21px;
+    color: #212121;
+}
+p {
+    color: #8f8f8f;
 }
 
 /*.owl-carousel .owl-item img {
@@ -63,4 +67,13 @@ body,h1,h2,h3,h4,h5,h6,span,label,small{
 
 .bg-yellow {
     background: #ecbf20;
+    justify-content: center;
+}
+.bg-yellow div {
+    text-align: center;
+}
+
+.bg-yellow img {
+    width: 150px;
+    height: 150px;
 }

@@ -33,6 +33,7 @@ const resendCodes = (phone)=>{
 };
 
 const createUser = (phone,name,email,password)=>{
+    debugger;
     return new Promise((resolve,reject) => {
         $.post('/api/createUser',{
             phone : phone,
