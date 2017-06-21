@@ -17,6 +17,10 @@ const render = (root)=>{
     }else if(state.nextPage == 4){
         section.append(CheckUser(_=>render(root)));
         console.log("aki pag 4");}
+
+
+
+
     root.append(section);
 };
 const state = {

@@ -19,8 +19,8 @@ const ResendCode = (update)=> {
         if (input.val() == state.userCode) {
             resendCodes(state.phone)
                 .then((data) => {
-                    state.userCode = data.data;
-                    console.log(state.userCode);
+                    //state.userCode = data.data;
+                    console.log(data);
                     update();
                 })
                 .catch((err) => {

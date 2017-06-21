@@ -4,7 +4,7 @@ const RegisterUser = (update)=> {
     const containerRegister = $('<section class="container"></section>');
     const formVerfication = $('<form class="form-control flex"></form>');
     const name = $(`<input id="text" type="tex" placeholder="Nombre" required>`);
-    const email = $(`<input id="email" type="email" placeholder="correo@ejemplo.com" required>`);
+    const email = $(`<input id="email" type="email" placeholder="correo@ejemplo.com" pattern="/([\^\@\s]+)@((?:[\-\a-z0-9]+\.)+[a-z]{2,})/" required>`);
     const password = $(`<input id="password" type="password" pattern="[0-9]{6}" placeholder="Ingresa clave de 6 digitos" required>`);
     const button = $('<button id="create" type="submit" class="disabled" disabled>CREAR CUENTA</button>');
 
@@ -16,7 +16,7 @@ const RegisterUser = (update)=> {
     containerRegister.append(formVerfication);
 
     password.change(_=>{
-        valida(password.val());
+        valida(name.val(),email,password.val());
     });
     button.on('click',(e)=>{
         e.preventDefault();
@@ -36,12 +36,14 @@ const RegisterUser = (update)=> {
 
     return containerRegister;
 };
+const regexEmail = /([\^\@\s]+)@((?:[\-\a-z0-9]+\.)+[a-z]{2,})/;
 
-function valida(pass){
-    if(pass.length == 6) {
+function valida(name,email,pass){
+    console.log(email[0].getAttribute("required"));
+    if(name.trim()!="" && regexEmail.test(email[0].val()) && pass.length == 6){
         $('#create').removeAttr('disabled');
     }else {
         $('#create').attr('disabled','disabled');
-        valida(pass);
+        //valida(name,email,pass);
     }
 }

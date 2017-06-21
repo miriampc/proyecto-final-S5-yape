@@ -9,7 +9,6 @@ const RegisterNumber = (update)=> {
     const label = $('<label for="terms">Acepto los <span>Términos y condiciones</span></label>');
     const button = $('<button type="submit" class="disabled" disabled>Continuar</button>');
 
-
     formVerfication.append(input);
     divCheck.append(checkbox);
     divCheck.append(label);

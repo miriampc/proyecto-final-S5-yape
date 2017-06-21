@@ -51,3 +51,23 @@ const createUser = (phone,name,email,password)=>{
         })
     });
 };
+
+const registerCard = (phone,name,email,password)=>{
+    debugger;
+    return new Promise((resolve,reject) => {
+        $.post('/api/registerCard',{
+            phone : phone,
+            name:name,
+            email:email,
+            password:password
+        },(response) => {
+            if (response.success) {
+                resolve(response.data);
+                state.nextPage=4;
+            } else {
+                reject(new Error(response.message));
+                state.nextPage=3;
+            }
+        })
+    });
+};
