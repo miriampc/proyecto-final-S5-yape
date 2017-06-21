@@ -33,4 +33,4 @@ const ResendCode = (update)=> {
     });
 
     return containerCode;
-}
+};
