@@ -1,5 +1,4 @@
-$(_=>{
-  const carousel = _=>{
+// $(_=>{
     $('.owl-carousel').owlCarousel({
         loop:true,
         margin:10,
@@ -16,5 +15,4 @@ $(_=>{
             }
         }
     })
-  }
-});
+// });
