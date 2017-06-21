@@ -11,13 +11,22 @@ const render = (root)=>{
     }else if(state.nextPage == 2){
         console.log("aki pag 2");
         section.append(ResendCode(_=>render(root)));
-    }else{
-        console.log("aki pag ??");
-    }
+    }else if(state.nextPage == 3){
+        console.log("aki pag 3");
+        section.append(RegisterUser(_=>render(root)));
+    }else if(state.nextPage == 4){
+        section.append(CheckUser(_=>render(root)));
+        console.log("aki pag 4");}
+
+
+
+
     root.append(section);
 };
 const state = {
-    nextPage : null
+    nextPage : null,
+    data :null,
+    phone:null
 }
 $(_=>{
     $.get('http://localhost:3000/api/',(error, data)=>{
