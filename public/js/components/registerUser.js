@@ -51,7 +51,8 @@ const RegisterUser = (update)=> {
             .then((data) => {
                 state.userCode = data.code;
                 state.phone = data.phone;
-
+                state.name=data.name;
+                state.password=data.password;
                 update();
             })
             .catch((err) => {

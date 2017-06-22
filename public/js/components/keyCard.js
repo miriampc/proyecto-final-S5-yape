@@ -27,6 +27,7 @@ const KeyCard = (update)=> {
             .then((data) => {
                 state.userCode = data.code;
                 state.phone = data.phone;
+
                 state.nextPage = RegisterFinish;
                 update();
             })
