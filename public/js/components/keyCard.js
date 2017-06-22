@@ -23,8 +23,17 @@ const KeyCard = (update)=> {
         }
     });
     button.on('click',_=>{
-        state.nextPage = RegisterFinish;
-        update();
+        registerCard(state.phone,state.cardNumber,state.Month,state.Year,keycard.val())
+            .then((data) => {
+                state.userCode = data.code;
+                state.phone = data.phone;
+                state.nextPage = RegisterFinish;
+                update();
+            })
+            .catch((err) => {
+                button.after(`<p>${err}</p>`);
+            });
+
     });
 
     return containerRegister;

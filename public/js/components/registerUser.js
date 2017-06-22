@@ -51,6 +51,7 @@ const RegisterUser = (update)=> {
             .then((data) => {
                 state.userCode = data.code;
                 state.phone = data.phone;
+
                 update();
             })
             .catch((err) => {
@@ -59,7 +60,6 @@ const RegisterUser = (update)=> {
             });
     });
 
-
     return containerRegister;
 };
 const regexEmail = /([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/;
@@ -67,10 +67,8 @@ const regexEmail = /([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/;
 function valida(name,email,pass){
 
     if(name.trim()!= 0 && regexEmail.test(email.val()) && pass.length == 6){
-        //$('input').removeClass('js-error');
         $('#create').removeAttr('disabled');
     }else {
-        $('#email').css('border-bottom-color','#f44336');
         $('#create').attr('disabled','disabled');
     }
 }

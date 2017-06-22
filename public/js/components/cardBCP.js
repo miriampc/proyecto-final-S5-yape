@@ -40,6 +40,9 @@ const RegisterCard = (update)=> {
         }
     });
     button.on('click',_=>{
+        state.cardNumber = card.val();
+        state.Month = month.val();
+        state.Year = year.val();
         state.nextPage = KeyCard;
         update();
 

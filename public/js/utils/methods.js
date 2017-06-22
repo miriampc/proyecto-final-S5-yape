@@ -22,10 +22,9 @@ const resendCodes = (phone)=>{
                 phone: phone
             },(response) => {
                 if (response.success) {
-                    state.User=response.data;
-                        resolve(response.data);
-                        state.userCode=response.data;
-                        state.nextPage = RegisterUser;
+                    resolve(response.data);
+                    state.userCode=response.data;
+                    state.nextPage = RegisterUser;
                 } else {
                     reject(new Error(response.message));
                     state.userCode = response.data;
@@ -55,21 +54,21 @@ const createUser = (phone,name,email,password)=>{
     });
 };
 
-const registerCard = (phone,name,email,password)=>{
-    debugger;
+const registerCard = (phone,card,month,year,keycard)=>{
     return new Promise((resolve,reject) => {
         $.post('/api/registerCard',{
             phone : phone,
-            name:name,
-            email:email,
-            password:password
+            cardNumber:card,
+            cardMonth:month,
+            cardYear:year,
+            cardPassword:keycard
         },(response) => {
             if (response.success) {
                 resolve(response.data);
-                state.nextPage=RegisterCard;
+                state.nextPage=RegisterFinish;
             } else {
                 reject(new Error(response.message));
-                state.nextPage=CheckUser;
+                state.nextPage=KeyCard;
             }
         })
     });

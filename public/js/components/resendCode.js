@@ -18,6 +18,14 @@ const ResendCode = (update)=> {
     containerCode.append(formVerfication);
     containerCode.append(code);
 
+    input.on('keypress keyup',(e)=> {
+        if (input.val() == state.userCode) {
+            state.nextPage = RegisterUser;
+            update();
+        } else {
+            state.nextPage = ResendCode;
+        }
+    });
 
    $(_=>{
        contador(22,input.val(),reboot,update);
@@ -54,7 +62,6 @@ function contador(cont,inputVal,reboot,update,input){
             cont=22;
         }else {
             console.log(seconds);
-            console.log($('#code'));
             $('#code').on('keypress keyup',(e)=> {
                 if (inputVal == state.userCode) {
                     clearInterval(seconds);
