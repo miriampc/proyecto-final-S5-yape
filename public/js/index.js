@@ -14,9 +14,7 @@ const render = (root)=>{
     root.append(section);
 };
 const state = {
-    nextPage : null,
-    data :null,
-    phone:null
+    nextPage : null
 }
 $(_=>{
     $.get('http://localhost:3000/api/',(error, data)=>{

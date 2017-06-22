@@ -7,8 +7,7 @@ const ResendCode = (update)=> {
     const icon = $(`<span class="icon"><img src="img/icons/lock.png"></span>`);
     const p = $('<p>Reintenta en: </p>');
     const reboot = $('<span id="second">21</span>');
-    const code = $(`<div><p>Tu CÓDIGO: ${state.userCode}</p></div>`);
-
+    const code = $(`<p>Tu CÓDIGO:<span id="code-generated">${state.userCode}</span></p>`);
 
     divInput.append(input);
     divInput.append(icon);
@@ -19,47 +18,53 @@ const ResendCode = (update)=> {
     containerCode.append(formVerfication);
     containerCode.append(code);
 
-    input.on('keypress keyup',(e)=> {
-        if (input.val() == state.userCode) {
-            state.nextPage = RegisterUser;
-            update();
-        } else {
-            state.nextPage = ResendCode;
-        }
 
-    });
+   $(_=>{
+       contador(22,input.val(),reboot,update);
+   });
 
     return containerCode;
 };
-let cont=22;
-function contador(query,sec,code){
+
+function contador(cont,inputVal,reboot,update,input){
     let seconds = setInterval(_=>{
         cont--;
-        sec.text(cont);
-        if(cont<=0){
-            resendCodes(query,state.phone)
-            .then((codeResponse)=>{
-                console.log(codeResponse);
-                state.userCode = codeResponse;
-                if(query==state.userCode){
-                    clearInterval(seconds);
-                    update();
-                }else {
-                    code.after(`<p>${state.userCode}</p>`);
+        reboot.text(cont);
+        if(cont == 0){
+            resendCodes(state.phone)
+                .then((codeResponse)=>{
+                    console.log(codeResponse);
+                    //state.userCode = codeResponse;
+                    if(inputVal==codeResponse){
+                        clearInterval(seconds);
+                        //state.nextPage = RegisterUser;
+                        update();
+                    }else {
+                        $('#code-generated').empty();
+                        $('#code-generated').text(state.userCode);
+                        state.nextPage = ResendCode;
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                    $('#code').after(`<p>${err}</p>`);
+                    $('#code').val('');
 
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-                $('#code').after(`<p>${err}</p>`);
-                $('#code').val('');
-                //update();
-                //code.append(`<p>state.userCode</p>`);
-
-            });
+                });
             cont=22;
+        }else {
+            console.log(seconds);
+            console.log($('#code'));
+            $('#code').on('keypress keyup',(e)=> {
+                if (inputVal == state.userCode) {
+                    clearInterval(seconds);
+                    state.nextPage = RegisterUser;
+                    update();
+                } else {
+                    state.nextPage = ResendCode;
+                }
+            });
         }
     },1000);
-    console.log(seconds);
     return seconds;
 }

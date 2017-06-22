@@ -39,11 +39,9 @@ const RegisterNumber = (update)=> {
             .then((data) => {
                 state.userCode = data.code;
                 state.phone = data.phone;
-                console.log(state.phone);
                 update();
             })
             .catch((err) => {
-            console.log(err);
                 span.empty();
                 span.text(err);
                 input.val('');

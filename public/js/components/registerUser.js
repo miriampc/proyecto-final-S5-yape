@@ -50,8 +50,7 @@ const RegisterUser = (update)=> {
         createUser(state.phone,name.val(),email.val(),password.val())
             .then((data) => {
                 state.userCode = data.code;
-                //state.phone = data.phone;
-                console.log(state.phone);
+                state.phone = data.phone;
                 update();
             })
             .catch((err) => {
