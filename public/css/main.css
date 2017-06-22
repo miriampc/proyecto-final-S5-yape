@@ -51,8 +51,8 @@ button:enabled {
     margin-bottom: 50px;
 }
 .instructions img {
-    width: 80px;
-    height: 63px;
+    width: 100px;
+    height: 84px;
     margin: 0 auto;
     margin-bottom: 20px;
 }
@@ -71,7 +71,7 @@ button:enabled {
     width: 100%;
     border: none;
     border-bottom: 1px solid #212121;
-    padding-left: 50px;
+    padding-left: 100px;
     margin-bottom: 10px;
     outline: none;
     font-size: 1.2rem;
@@ -80,6 +80,7 @@ button:enabled {
 .form-control input[type="checkbox"]  {
     width: 20px;
     height: 20px;
+    margin-right: 10px;
 }
 
 .bg-yellow {
@@ -97,4 +98,21 @@ button:enabled {
 
 .js-error {
     border-bottom:1px solid #F44336;
+}
+
+.terms span {
+    color: #00c3a3;
+}
+
+.box {
+    position: relative;
+}
+.box .icon img{
+    width: 80px;
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+}
+#terms:checked {
+    background-image: url("../img/icons/check-symbol.png");
 }
