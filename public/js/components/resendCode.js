@@ -19,7 +19,7 @@ const ResendCode = (update)=> {
     containerCode.append(formVerfication);
     containerCode.append(code);
 
-    input.on('blur',(e)=> {
+    input.on('keypress keyup',(e)=> {
         if (input.val() == state.userCode) {
             state.nextPage = RegisterUser;
             update();

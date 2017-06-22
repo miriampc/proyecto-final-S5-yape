@@ -6,7 +6,7 @@ const KeyCard = (update)=> {
     const divInput = $('<div class="box"></div>');
     const icon = $(`<span class="icon"><img src="img/icons/lock.png"></span>`);
     const keyCard = $(`<input id="card" type="number" pattern="[0-9]{4}" placeholder="Tu clave" required>`);
-    const button = $('<button type="submit" class="disabled" disabled>REGISTRAR</button>');
+    const button = $('<button id="keycard" type="submit" class="disabled" disabled>REGISTRAR</button>');
 
     divInput.append(keyCard);
     divInput.append(icon);
@@ -15,8 +15,16 @@ const KeyCard = (update)=> {
     containerRegister.append(Instructions(resource.image,resource.title,resource.description));
     containerRegister.append(formVerfication);
 
+    keyCard.on('keypress keyup',_=>{
+        if(keyCard.val().length == 4){
+            enabledButton(button.attr('id'));
+        }else {
+            disabledButton(button.attr('id'));
+        }
+    });
     button.on('click',_=>{
-
+        state.nextPage = RegisterFinish;
+        update();
     });
 
     return containerRegister;
