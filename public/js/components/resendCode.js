@@ -10,7 +10,6 @@ const ResendCode = (update)=> {
     const code = $(`<div><p>Tu CÓDIGO: ${state.userCode}</p></div>`);
 
 
-
     divInput.append(input);
     divInput.append(icon);
     formVerfication.append(divInput);

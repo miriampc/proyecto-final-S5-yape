@@ -65,16 +65,20 @@ button:enabled {
 
 .form-control {
     justify-content: space-around;
+    flex-flow: wrap;
     height: 150px;
 }
 .form-control input {
     width: 100%;
     border: none;
     border-bottom: 1px solid #212121;
-    padding-left: 100px;
-    margin-bottom: 10px;
+    padding-left: 42px;
+    margin-bottom: 28px;
     outline: none;
     font-size: 1.2rem;
+}
+.box #phone {
+    padding-left: 100px;
 }
 
 .form-control input[type="checkbox"]  {
@@ -107,12 +111,36 @@ button:enabled {
 .box {
     position: relative;
 }
+
 .box .icon img{
-    width: 80px;
+    width: 26px;
     position: absolute;
-    bottom: 15px;
+    bottom: 30px;
     left: 0;
+}
+.box .cel img{
+    width: 80px;
+}
+.scan {
+    width: 100%;
+    height: 40px;
+    text-align: center;
 }
 #terms:checked {
     background-image: url("../img/icons/check-symbol.png");
+}
+
+#month, #year {
+    width: 40px;
+    margin-left: 10px;
+    margin-bottom: 0;
+    padding-left: 2px;
+}
+.scan .slash img{
+    left: 20%;
+    bottom: 21px;
+    margin-left: 7px;
+}
+.date img {
+    width: 24px;
 }

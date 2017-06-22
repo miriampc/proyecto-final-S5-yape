@@ -3,16 +3,30 @@ const RegisterCard = (update)=> {
     const resource = resources.registerCard;
     const containerRegister = $('<section class="container"></section>');
     const formVerfication = $('<form class="form-control flex"></form>');
-    const card = $(`<input id="card" type="number" pattern="[0-9]{16}" placeholder="Ingresa tu número de celular" required>`);
-    const span =$('<span>Escanear tarjeta</span>');
-    const label = $('<label for="terms">Fecha de vencimiento</label>');
+    const divInput = $('<div class="box"></div>');
+    const card = $(`<input id="card" type="number" pattern="[0-9]{16}" placeholder="Número de tarjeta" required>`);
+    const icon = $(`<span class="icon"><img src="img/icons/card.png"></span>`);
+    const divScan = $('<div class="box terms scan"></div>');
+    const span =$('<span class="slash icon"><img src="img/icons/scan.png"> Escanear tarjeta</span>');
+    const divDate = $('<div class="date"></div>');
+    const label = $('<label for="month">Fecha de vencimiento</label>');
     const month = $(`<input id="month" type="number" placeholder="Mes" required>`);
+    const backSlash = $(`<img src="img/icons/slash.png">`);
     const year = $(`<input id="year" type="number"  placeholder="Año" required>`);
     const button = $('<button id="sendCard" type="submit" class="disabled" disabled>Continuar</button>');
 
-    formVerfication.append(card);
-    formVerfication.append(month);
-    formVerfication.append(year);
+
+    divInput.append(card);
+    divInput.append(icon);
+    divScan.append(span);
+    formVerfication.append(divInput);
+    formVerfication.append(divScan);
+
+    divDate.append(label);
+    divDate.append(month);
+    divDate.append(backSlash);
+    divDate.append(year);
+    formVerfication.append(divDate);
     formVerfication.append(button);
     containerRegister.append(Instructions(resource.image,resource.title,resource.description));
     containerRegister.append(formVerfication);

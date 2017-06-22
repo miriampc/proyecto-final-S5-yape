@@ -4,8 +4,8 @@ const RegisterNumber = (update)=> {
     const containerRegister = $('<section class="container"></section>');
     const formVerfication = $('<form class="form-control flex"></form>');
     const divInput = $('<div class="box"></div>');
-    const input = $(`<input id="text" type="number" pattern="[0-9]{9}" placeholder="Número de celular" required>`);
-    const icon = $(`<span class="icon"><img src="img/icons/phoneandnumber.png"></span>`);
+    const input = $(`<input id="phone" type="number" pattern="[0-9]{9}" placeholder="Número de celular" required>`);
+    const icon = $(`<span class="icon cel"><img src="img/icons/phoneandnumber.png"></span>`);
     const divCheck = $('<div class="terms"></div>');
     const checkbox = $(`<input id="terms" type="checkbox">`);
     const span = $(`<span></span>`);

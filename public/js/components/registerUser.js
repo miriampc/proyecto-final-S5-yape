@@ -3,14 +3,29 @@ const RegisterUser = (update)=> {
     const resource = resources.userRegister;
     const containerRegister = $('<section class="container"></section>');
     const formVerfication = $('<form class="form-control flex"></form>');
+    const divInputName = $('<div class="box"></div>');
+    const divInputEmail = $('<div class="box"></div>');
+    const divInputPass = $('<div class="box"></div>');
     const name = $(`<input id="name" type="text" placeholder="Nombre" required>`);
     const email = $(`<input id="email" type="email" placeholder="correo@ejemplo.com">`);
     const password = $(`<input id="passwd" type="password" pattern="[0-9]{6}" placeholder="Ingresa clave de 6 digitos" required>`);
+    const iconName = $(`<span class="icon"><img src="img/icons/user.png"></span>`);
+    const iconEmail = $(`<span class="icon"><img src="img/icons/message-gray.png"></span>`);
+    const iconPass = $(`<span class="icon"><img src="img/icons/lock.png"></span>`);
+    const span  = $(`<span>Cuida esta clave como oro, es tu acceso a Yape</span>`)
+
     const button = $('<button id="create" type="submit" class="disabled" disabled>CREAR CUENTA</button>');
 
-    formVerfication.append(name);
-    formVerfication.append(email);
-    formVerfication.append(password);
+    divInputName.append(name);
+    divInputEmail.append(email);
+    divInputPass.append(password);
+    divInputName.append(iconName);
+    divInputEmail.append(iconEmail);
+    divInputPass.append(iconPass);
+    formVerfication.append(divInputName);
+    formVerfication.append(divInputEmail);
+    formVerfication.append(divInputPass);
+    formVerfication.append(span);
     formVerfication.append(button);
     containerRegister.append(Instructions(resource.image, resource.title, resource.description));
     containerRegister.append(formVerfication);
