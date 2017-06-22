@@ -6,6 +6,11 @@ const CheckUser = (update)=> {
                           </div>`);
     containerRegister.append(divMessage);
 
-    setTimeout(_={},3000)
+    $(_=>{
+        setTimeout(_=>{
+            state.nextPage=RegisterCard;
+            update();
+        },3000);
+    });
     return containerRegister;
 }

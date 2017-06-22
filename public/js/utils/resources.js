@@ -22,6 +22,11 @@ const resources ={
     cardId : {
         image: 'bcp-logo.png',
         title: 'Ingresa la clave de tu tarjeta',
-        description: 'Tarjeta'
+        description: 'Tarjeta ****1234'
+    },
+    face : {
+        image: 'happy-face.png',
+        title: 'Hola',
+        description: 'Mostrar Saldo'
     }
 }
