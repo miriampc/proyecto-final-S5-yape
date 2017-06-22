@@ -8,7 +8,7 @@ const Portada = (update)=>{
     containerPortada.append(button);
 
     button.on('click',_=>{
-        state.nextPage = 1;
+        state.nextPage = RegisterNumber;
         update();
     });
 

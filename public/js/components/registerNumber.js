@@ -3,30 +3,31 @@ const RegisterNumber = (update)=> {
     const resource = resources.phoneRegister;
     const containerRegister = $('<section class="container"></section>');
     const formVerfication = $('<form class="form-control flex"></form>');
-    const input = $(`<input id="text" type="number" pattern="^[0-9]{9}" placeholder="Ingresa tu número de celular" required>`);
+    const input = $(`<input id="text" type="number" pattern="[0-9]{9}" placeholder="Ingresa tu número de celular" required>`);
     const divCheck = $('<div></div>');
     const checkbox = $(`<input id="terms" type="checkbox">`);
+    const span = $(`<span></span>`);
     const label = $('<label for="terms">Acepto los <span>Términos y condiciones</span></label>');
     const button = $('<button type="submit" class="disabled" disabled>Continuar</button>');
 
     formVerfication.append(input);
     divCheck.append(checkbox);
     divCheck.append(label);
+    formVerfication.append(span);
     formVerfication.append(divCheck);
     formVerfication.append(button);
     containerRegister.append(Instructions(resource.image,resource.title,resource.description));
     containerRegister.append(formVerfication);
 
+    input.on('keyup keypress',(e)=>{
+        disableButton(input.val(),checkbox,button);
+    });
+
     checkbox.on('change', (e)=>{
         e.preventDefault();
-        if(input.val().length == 9 && checkbox[0].checked) {
-            button.removeAttr('disabled');
-            console.log(checkbox[0].checked);
-        }else {
-            console.log(checkbox[0].checked);
-            button.attr('disabled','disabled');
-        }
+        disableButton(input.val(),checkbox,button);
     });
+
 
     button.on('click',(e)=>{
         e.preventDefault();
@@ -38,10 +39,20 @@ const RegisterNumber = (update)=> {
                 update();
             })
             .catch((err) => {
-                input.after(`<p>${err}</p>`);
-                update();
+            console.log(err);
+                span.empty();
+                span.text(err);
+                input.val('');
             });
     });
 
     return containerRegister;
 };
+const regexNumber = /[0-9]{9}/;
+function disableButton(queryInput,check,queryButton) {
+    if(queryInput.length == 9 && check.prop('checked')) {
+        queryButton.removeAttr('disabled');
+    }else {
+        queryButton.attr('disabled','disabled');
+    }
+}

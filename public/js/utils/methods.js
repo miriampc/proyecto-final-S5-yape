@@ -6,29 +6,35 @@ const registerPhoneNumber = (phone,terms) => {
         },(response) => {
             if (response.success) {
                 resolve(response.data);
-                state.nextPage=2;
+                //state.nextPage=2;
+                state.nextPage=ResendCode;
             } else {
                 reject(new Error(response.message));
-                state.nextPage=1;
+                state.nextPage = RegisterNumber;
             }
         })
     });
 }
 
 
-const resendCodes = (phone)=>{
+const resendCodes = (query,phone)=>{
     return new Promise((resolve,reject) => {
-        $.post('/api/resendCode',{
-            phone: phone
-        },(response) => {
-            if (response.success) {
-                resolve(response.data);
-                state.nextPage=3;
-            } else {
-                reject(new Error(response.message));
-                state.nextPage=2;
-            }
-        })
+            $.post('/api/resendCode',{
+                phone: phone
+            },(response) => {
+                if (response.success) {
+                    state.User=response.data;
+                    //if(query==state.userCode){
+                        resolve(response.data);
+                        state.nextPage = RegisterUser;
+
+                    //}
+                } else {
+                    reject(new Error(response.message));
+                    state.userCode = response.data;
+                    state.nextPage=RegisterNumber;
+                }
+            })
     });
 };
 
@@ -43,10 +49,10 @@ const createUser = (phone,name,email,password)=>{
         },(response) => {
             if (response.success) {
                 resolve(response.data);
-                state.nextPage=4;
+                state.nextPage=CheckUser;
             } else {
                 reject(new Error(response.message));
-                state.nextPage=3;
+                state.nextPage=RegisterUser;
             }
         })
     });
@@ -63,10 +69,10 @@ const registerCard = (phone,name,email,password)=>{
         },(response) => {
             if (response.success) {
                 resolve(response.data);
-                state.nextPage=4;
+                state.nextPage=RegisterCard;
             } else {
                 reject(new Error(response.message));
-                state.nextPage=3;
+                state.nextPage=CheckUser;
             }
         })
     });

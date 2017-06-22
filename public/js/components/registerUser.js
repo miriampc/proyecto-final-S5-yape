@@ -3,9 +3,9 @@ const RegisterUser = (update)=> {
     const resource = resources.userRegister;
     const containerRegister = $('<section class="container"></section>');
     const formVerfication = $('<form class="form-control flex"></form>');
-    const name = $(`<input id="text" type="tex" placeholder="Nombre" required>`);
-    const email = $(`<input id="email" type="email" placeholder="correo@ejemplo.com" pattern="([\^\@\s]+)@((?:[\-\a-z0-9]+\.)+[a-z]{2,})" required>`);
-    const password = $(`<input id="password" type="password" pattern="[0-9]{6}" placeholder="Ingresa clave de 6 digitos" required>`);
+    const name = $(`<input id="name" type="text" placeholder="Nombre" required>`);
+    const email = $(`<input id="email" type="email" placeholder="correo@ejemplo.com">`);
+    const password = $(`<input id="passwd" type="password" pattern="[0-9]{6}" placeholder="Ingresa clave de 6 digitos" required>`);
     const button = $('<button id="create" type="submit" class="disabled" disabled>CREAR CUENTA</button>');
 
     formVerfication.append(name);
@@ -15,7 +15,19 @@ const RegisterUser = (update)=> {
     containerRegister.append(Instructions(resource.image, resource.title, resource.description));
     containerRegister.append(formVerfication);
 
-    password.change(_=>{
+    name.on('blur',(e)=>{
+        if(e.wich>64 && e.wich <122){
+            valida(name.val(),email,password.val());
+        }else {
+            $('#name').css('border-color','#f44336');
+        }
+    });
+
+    email.on('blur',_=>{
+        valida(name.val(),email,password.val());
+    });
+
+    password.on('keyup',_=>{
         valida(name.val(),email,password.val());
     });
     button.on('click',(e)=>{
@@ -39,11 +51,12 @@ const RegisterUser = (update)=> {
 const regexEmail = /([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/;
 
 function valida(name,email,pass){
-    console.log(regexEmail.test(email.val()));
-    if(name.trim()!="" && regexEmail.test(email.val()) && pass.length == 6){
+
+    if(name.trim()!= 0 && regexEmail.test(email.val()) && pass.length == 6){
+        //$('input').removeClass('js-error');
         $('#create').removeAttr('disabled');
     }else {
+        $('#email').css('border-bottom-color','#f44336');
         $('#create').attr('disabled','disabled');
-        //valida(name,email,pass);
     }
 }

@@ -29,6 +29,16 @@ p {
     align-items: center;
     flex-flow: column wrap;
 }
+button {
+    border: none;
+    padding: 10px 14px;
+    border-radius: 5px;
+}
+button:enabled {
+    color: #fff;
+    background: #fbd43b;
+}
+
 .instructions {
     height: 280px;
     margin-bottom: 50px;
@@ -50,7 +60,7 @@ p {
     justify-content: space-around;
     height: 150px;
 }
-.form-control input[type="number"] {
+.form-control input {
     width: 100%;
     border: none;
     border-bottom: 1px solid #212121;
@@ -76,4 +86,8 @@ p {
 .bg-yellow img {
     width: 150px;
     height: 150px;
+}
+
+.js-error {
+    border-bottom:1px solid #F44336;
 }
