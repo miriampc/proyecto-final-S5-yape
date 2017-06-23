@@ -5,25 +5,25 @@ const KeyCard = (update)=> {
     const formVerfication = $('<form class="form-control flex"></form>');
     const divInput = $('<div class="box"></div>');
     const icon = $(`<span class="icon"><img src="img/icons/lock.png"></span>`);
-    const keyCard = $(`<input id="card" type="number" pattern="[0-9]{4}" placeholder="Tu clave" required>`);
+    const keyCardInput = $(`<input id="card" type="number" pattern="[0-9]{4}" placeholder="Tu clave" required>`);
     const button = $('<button id="keycard" type="submit" class="disabled" disabled>REGISTRAR</button>');
 
-    divInput.append(keyCard);
+    divInput.append(keyCardInput);
     divInput.append(icon);
     formVerfication.append(divInput);
     formVerfication.append(button);
     containerRegister.append(Instructions(resource.image,resource.title,resource.description));
     containerRegister.append(formVerfication);
 
-    keyCard.on('keypress keyup',_=>{
-        if(keyCard.val().length == 4){
+    keyCardInput.on('keypress keyup',_=>{
+        if(keyCardInput.val().length == 4){
             enabledButton(button.attr('id'));
         }else {
             disabledButton(button.attr('id'));
         }
     });
     button.on('click',_=>{
-        registerCard(state.phone,state.cardNumber,state.Month,state.Year,keycard.val())
+        registerCard(state.phone,state.cardNumber,state.Month,state.Year,keyCardInput.val())
             .then((data) => {
                 state.userCode = data.code;
                 state.phone = data.phone;
