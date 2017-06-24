@@ -10,7 +10,7 @@ const RegisterNumber = (update)=> {
     const checkbox = $(`<input id="terms" type="checkbox">`);
     const span = $(`<span></span>`);
     const label = $('<label for="terms">Acepto los <span>Términos y condiciones</span></label>');
-    const button = $('<button type="submit" class="disabled" disabled>Continuar</button>');
+    const button = $('<button id="register" type="submit" class="disabled" disabled>Continuar</button>');
 
     divInput.append(input);
     divInput.append(icon);
@@ -24,12 +24,20 @@ const RegisterNumber = (update)=> {
     containerRegister.append(formVerfication);
 
     input.on('keyup keypress',(e)=>{
-        disableButton(input.val(),checkbox,button);
+        if(input.val().length == 9 && checkbox.prop('checked')) {
+            enabledButton(button.attr('id'));
+        }else {
+            disabledButton(button.attr('id'));
+        }
     });
 
     checkbox.on('change', (e)=>{
         e.preventDefault();
-        disableButton(input.val(),checkbox,button);
+        if(input.val().length == 9 && checkbox.prop('checked')) {
+            enabledButton(button.attr('id'));
+        }else {
+            disabledButton(button.attr('id'));
+        }
     });
 
 
@@ -50,11 +58,3 @@ const RegisterNumber = (update)=> {
 
     return containerRegister;
 };
-const regexNumber = /[0-9]{9}/;
-function disableButton(queryInput,check,queryButton) {
-    if(queryInput.length == 9 && check.prop('checked')) {
-        queryButton.removeAttr('disabled');
-    }else {
-        queryButton.attr('disabled','disabled');
-    }
-}
