@@ -27,7 +27,7 @@ const resendCodes = (phone)=>{
                     state.nextPage = RegisterUser;
                 } else {
                     reject(new Error(response.message));
-                    state.userCode = response.data;
+                    //state.userCode = response.data;
                     state.nextPage=RegisterNumber;
                 }
             })

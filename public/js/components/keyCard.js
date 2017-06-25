@@ -22,13 +22,12 @@ const KeyCard = (update)=> {
             disabledButton(button.attr('id'));
         }
     });
-    button.on('click',_=>{
+    button.on('click',(e)=>{
+        e.preventDefault();
         registerCard(state.phone,state.cardNumber,state.Month,state.Year,keyCardInput.val())
             .then((data) => {
                 state.userCode = data.code;
                 state.phone = data.phone;
-
-                state.nextPage = RegisterFinish;
                 update();
             })
             .catch((err) => {
