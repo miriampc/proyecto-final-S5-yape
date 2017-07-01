@@ -4,13 +4,13 @@ const RegisterNumber = (update)=> {
     const containerRegister = $('<section class="container"></section>');
     const formVerfication = $('<form class="form-control flex"></form>');
     const divInput = $('<div class="box"></div>');
-    const input = $(`<input id="phone" type="number" pattern="[0-9]{9}" placeholder="Número de celular" required>`);
+    const input = $(`<input id="phone" type="text" maxlength="9" placeholder="Número de celular" required>`);
     const icon = $(`<span class="icon cel"><img src="img/icons/phoneandnumber.png"></span>`);
     const divCheck = $('<div class="terms"></div>');
     const checkbox = $(`<input id="terms" type="checkbox">`);
     const span = $(`<span></span>`);
     const label = $('<label for="terms">Acepto los <span>Términos y condiciones</span></label>');
-    const button = $('<button id="register" type="submit" class="disabled" disabled>Continuar</button>');
+    const button = $('<button id="btnSend" type="submit" disabled>Continuar</button>');
 
     divInput.append(input);
     divInput.append(icon);
@@ -20,26 +20,27 @@ const RegisterNumber = (update)=> {
     formVerfication.append(span);
     formVerfication.append(divCheck);
     formVerfication.append(button);
-    containerRegister.append(Instructions(resource.image,resource.title,resource.description));
+    containerRegister.append(Instructions(resource.image,resource.title,resource.description,""));
     containerRegister.append(formVerfication);
 
-    input.on('keyup keypress',(e)=>{
-        if(input.val().length == 9 && checkbox.prop('checked')) {
-            enabledButton(button.attr('id'));
-        }else {
-            disabledButton(button.attr('id'));
+
+    input.on('keydown',(e)=>{
+        if( e.keyCode > 47 && e.keyCode < 58 ||  e.keyCode === 8){
+            span.empty();
         }
+        else {
+            span.text('Solo números, inicia con 9');
+            return false;
+        }
+    });
+
+    input.on('keyup keypress',(e)=>{
+        verifyRegisterNumber(input.val(),checkbox,button);
     });
 
     checkbox.on('change', (e)=>{
-        e.preventDefault();
-        if(input.val().length == 9 && checkbox.prop('checked')) {
-            enabledButton(button.attr('id'));
-        }else {
-            disabledButton(button.attr('id'));
-        }
+        verifyRegisterNumber(input.val(),checkbox,button);
     });
-
 
     button.on('click',(e)=>{
         e.preventDefault();

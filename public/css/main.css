@@ -2,9 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-body,h1,h2,h3,h4,h5,h6,span,label,small{
     font-family: 'Roboto',sans-serif;
+}
+body,h1,h2,h3,h4,h5,h6,span,label{
     line-height: 21px;
     color: #212121;
 }
@@ -122,6 +122,12 @@ button:enabled {
 }
 .box .cel img{
     width: 80px;
+}
+.icon-clock {
+    position: relative;
+    width: 26px;
+    top: 6px;
+    margin: 0 7px;
 }
 .scan {
     width: 100%;

@@ -6,7 +6,7 @@ const ResendCode = (update)=> {
     const divInput = $('<div class="box"></div>');
     const input = $(`<input id="code" type="number" pattern="^[0-9]{6}" placeholder=". . . . . ." required>`);
     const icon = $(`<span class="icon"><img src="img/icons/lock.png"></span>`);
-    const p = $('<p>Reintenta en <img src="img/icons/clock.png"></p>');
+    const p = $('<p>Reintenta en <img class="icon-clock" src="img/icons/clock.png"></p>');
     const reboot = $('<span id="second"></span>');
     const code = $(`<p>Tu CÓDIGO:<span id="code-generated">${state.userCode}</span></p>`);
 
@@ -15,7 +15,7 @@ const ResendCode = (update)=> {
     formVerfication.append(divInput);
     p.append(reboot);
     formVerfication.append(p);
-    containerCode.append(Instructions(resource.image,resource.title,resource.description));
+    containerCode.append(Instructions(resource.image,resource.title,resource.description,state.phone));
     containerCode.append(formVerfication);
     containerCode.append(code);
 
@@ -31,8 +31,9 @@ const ResendCode = (update)=> {
 
     return containerCode;
 };
-let cont=21;
-function contador(){
+
+let cont = 21;
+function counter(){
     console.log(cont);
     if(cont > 0){
         cont --;
@@ -52,6 +53,6 @@ function contador(){
         cont=21;
     }
 }
-function detener(){
+function stopInterval(){
     clearInterval(interval);
 }
