@@ -27,7 +27,7 @@ const RegisterUser = (update)=> {
     formVerfication.append(divInputPass);
     formVerfication.append(span);
     formVerfication.append(button);
-    containerRegister.append(Instructions(resource.image, resource.title, resource.description));
+    containerRegister.append(Instructions(resource.image, resource.title, resource.description,""));
     containerRegister.append(formVerfication);
 
     name.on('blur',(e)=>{
